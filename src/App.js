@@ -14,6 +14,9 @@ const App = () => {
           <p className="sub-text">
             Share recipes for your favourite emoji mixups ✨
           </p>
+          <p className="sub-text">
+            Inspired by <a href="https://tikolu.net/emojimix/">emojimix</a>
+          </p>
         </div>
         <div className="footer-container">
           <img alt="Twitter Logo" className="twitter-logo" src={twitterLogo} />
