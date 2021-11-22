@@ -10,9 +10,9 @@ const App = () => {
     <div className="App">
       <div className="container">
         <div className="header-container">
-          <p className="header">🖼 GIF Portal</p>
+          <p className="header">📖 Emoji Cookbook</p>
           <p className="sub-text">
-            View your GIF collection in the metaverse ✨
+            Share recipes for your favourite emoji mixups ✨
           </p>
         </div>
         <div className="footer-container">
