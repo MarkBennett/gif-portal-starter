@@ -7,6 +7,14 @@ To get started with this course, clone this repo and follow these commands:
 2. Run `npm run start` to start the project
 3. Start coding!
 
+### Generating a keypair
+
+You'll need to generate a keypair that the client will use whenever it's connecting to the blockchain to create an account. To do this run,
+
+```
+cd src && node createKeyPair.js
+```
+
 ### **What is the .vscode Folder?**
 If you use VSCode to build your app, we included a list of suggested extensions that will help you build this project! Once you open this project in VSCode, you will see a popup asking if you want to download the recommended extensions :).
 
