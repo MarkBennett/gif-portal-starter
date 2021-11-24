@@ -1,6 +1,6 @@
 import twitterLogo from "./assets/twitter-logo.svg";
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import idl from "./idl.json";
 import { Connection, PublicKey, clusterApiUrl } from "@solana/web3.js";
 import { Program, Provider, web3 } from "@project-serum/anchor";
@@ -98,10 +98,14 @@ const App = () => {
     return provider;
   };
 
+  const getProgram = (provider) => {
+    return new Program(idl, programID, provider);
+  };
+
   const createGifAccount = async () => {
     try {
       const provider = getProvider();
-      const program = new Program(idl, programID, provider);
+      const program = getProgram(provider);
       console.log("ping");
       await program.rpc.startStuffOff({
         accounts: {
@@ -124,7 +128,7 @@ const App = () => {
   const getGifList = async () => {
     try {
       const provider = getProvider();
-      const program = new Program(idl, programID, provider);
+      const program = getProgram(provider);
       const account = await program.account.baseAccount.fetch(
         baseAccount.publicKey
       );
@@ -138,10 +142,26 @@ const App = () => {
   };
 
   const sendGif = async () => {
-    if (inputValue.length > 0) {
-      console.log("Gif link:", inputValue);
-    } else {
-      console.log("Empty input. Try again.");
+    if (inputValue.length === 0) {
+      console.log("No gif link gieven!");
+      return;
+    }
+    console.log("Gif link:", inputValue);
+    try {
+      const provider = getProvider();
+      const program = getProgram(provider);
+
+      await program.rpc.addGif(inputValue, {
+        accounts: {
+          baseAccount: baseAccount.publicKey,
+          user: provider.wallet.publicKey,
+        },
+      });
+      console.log("GIF successfully sent to program", inputValue);
+
+      await getGifList();
+    } catch (error) {
+      console.log("Error sending GIF:", error);
     }
   };
 
@@ -194,7 +214,7 @@ const App = () => {
           <div className="gif-grid">
             {gifList.map((item, index) => (
               <div className="gif-item" key={index}>
-                <img src={item.gifLink} />
+                <img src={item.gifLink} alt="A fun GIF" />
               </div>
             ))}
           </div>
@@ -202,6 +222,8 @@ const App = () => {
       );
     }
   };
+
+  const memo_getGifList = useCallback(getGifList, []);
 
   // useEffects
   /*
@@ -220,9 +242,9 @@ const App = () => {
     if (walletAddress) {
       console.log("Fetching GIF list...");
 
-      getGifList();
+      memo_getGifList();
     }
-  }, [walletAddress]);
+  }, [walletAddress, memo_getGifList]);
 
   return (
     <div className="App">
