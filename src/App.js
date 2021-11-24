@@ -217,7 +217,13 @@ const App = () => {
           <div className="gif-grid">
             {gifList.map((item, index) => (
               <div className="gif-item" key={index}>
-                <img src={item.gifLink} alt="A fun GIF" />
+                <img
+                  src={item.gifLink}
+                  alt={`From ${item.userAddress.toString()}`}
+                />
+                <caption class="gif-caption">
+                  From ${item.userAddress.toString()}
+                </caption>
               </div>
             ))}
           </div>

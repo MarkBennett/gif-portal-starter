@@ -111,7 +111,7 @@
   object-fit: cover;
 }
 
-.connected-container input[type='text'] {
+.connected-container input[type="text"] {
   display: inline-block;
   color: white;
   padding: 10px;
@@ -127,4 +127,9 @@
 
 .connected-container button {
   height: 50px;
+}
+
+.gif-caption {
+  color: white;
+  padding: 1em;
 }
