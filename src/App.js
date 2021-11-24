@@ -1,21 +1,22 @@
-import twitterLogo from './assets/twitter-logo.svg';
-import './App.css';
-import { useEffect, useState } from 'react';
+import twitterLogo from "./assets/twitter-logo.svg";
+import "./App.css";
+import { useEffect, useState } from "react";
+import idl from "./idl.json";
 
 // Constants
-const TWITTER_HANDLE = '_buildspace';
+const TWITTER_HANDLE = "_buildspace";
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const TEST_GIFS = [
-	'https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp',
-	'https://media3.giphy.com/media/L71a8LW2UrKwPaWNYM/giphy.gif?cid=ecf05e47rr9qizx2msjucl1xyvuu47d7kf25tqt2lvo024uo&rid=giphy.gif&ct=g',
-	'https://media4.giphy.com/media/AeFmQjHMtEySooOc8K/giphy.gif?cid=ecf05e47qdzhdma2y3ugn32lkgi972z9mpfzocjj6z1ro4ec&rid=giphy.gif&ct=g',
-	'https://i.giphy.com/media/PAqjdPkJLDsmBRSYUp/giphy.webp'
+  "https://i.giphy.com/media/eIG0HfouRQJQr1wBzz/giphy.webp",
+  "https://media3.giphy.com/media/L71a8LW2UrKwPaWNYM/giphy.gif?cid=ecf05e47rr9qizx2msjucl1xyvuu47d7kf25tqt2lvo024uo&rid=giphy.gif&ct=g",
+  "https://media4.giphy.com/media/AeFmQjHMtEySooOc8K/giphy.gif?cid=ecf05e47qdzhdma2y3ugn32lkgi972z9mpfzocjj6z1ro4ec&rid=giphy.gif&ct=g",
+  "https://i.giphy.com/media/PAqjdPkJLDsmBRSYUp/giphy.webp",
 ];
 
 const App = () => {
   // State
   const [walletAddress, setWalletAddress] = useState(null);
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [gifList, setGifList] = useState([]);
 
   // Actions
@@ -29,7 +30,7 @@ const App = () => {
 
       if (solana) {
         if (solana.isPhantom) {
-          console.log('Phantom wallet found!');
+          console.log("Phantom wallet found!");
         }
 
         /*
@@ -38,7 +39,7 @@ const App = () => {
          */
         const response = await solana.connect({ onlyIfTrusted: true });
         console.log(
-          'Connected with Public Key:',
+          "Connected with Public Key:",
           response.publicKey.toString()
         );
 
@@ -47,7 +48,7 @@ const App = () => {
          */
         setWalletAddress(response.publicKey.toString());
       } else {
-        alert('Solana object not found! Get a Phantom Wallet 👻');
+        alert("Solana object not found! Get a Phantom Wallet 👻");
       }
     } catch (error) {
       console.error(error);
@@ -60,10 +61,10 @@ const App = () => {
    */
   const connectWallet = async () => {
     const { solana } = window;
-  
+
     if (solana) {
       const response = await solana.connect();
-      console.log('Connected with Public Key:', response.publicKey.toString());
+      console.log("Connected with Public Key:", response.publicKey.toString());
       setWalletAddress(response.publicKey.toString());
     }
   };
@@ -75,10 +76,9 @@ const App = () => {
 
   const sendGif = async () => {
     if (inputValue.length > 0) {
-      console.log('Gif link:', inputValue);
-
+      console.log("Gif link:", inputValue);
     } else {
-      console.log('Empty input. Try again.');
+      console.log("Empty input. Try again.");
     }
   };
 
@@ -101,7 +101,7 @@ const App = () => {
         onSubmit={async (event) => {
           event.preventDefault();
           await sendGif();
-          setInputValue('');
+          setInputValue("");
         }}
       >
         <input
@@ -110,10 +110,12 @@ const App = () => {
           value={inputValue}
           onChange={onInputChange}
         />
-        <button type="submit" className="cta-button submit-gif-button">Submit</button>
+        <button type="submit" className="cta-button submit-gif-button">
+          Submit
+        </button>
       </form>
       <div className="gif-grid">
-        {gifList.map(gif => (
+        {gifList.map((gif) => (
           <div className="gif-item" key={gif}>
             <img src={gif} alt={gif} />
           </div>
@@ -131,14 +133,14 @@ const App = () => {
     const onLoad = async () => {
       await checkIfWalletIsConnected();
     };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
+    window.addEventListener("load", onLoad);
+    return () => window.removeEventListener("load", onLoad);
   }, []);
 
   useEffect(() => {
     if (walletAddress) {
-      console.log('Fetching GIF list...');
-      
+      console.log("Fetching GIF list...");
+
       // Call Solana program here.
 
       // Set state
@@ -149,7 +151,7 @@ const App = () => {
   return (
     <div className="App">
       {/* This was solely added for some styling fanciness */}
-      <div className={walletAddress ? 'authed-container' : 'container'}>
+      <div className={walletAddress ? "authed-container" : "container"}>
         <div className="header-container">
           <p className="header">📖 Emoji Cookbook</p>
           <p className="sub-text">
