@@ -216,15 +216,16 @@ const App = () => {
           </form>
           <div className="gif-grid">
             {gifList.map((item, index) => (
-              <div className="gif-item" key={index}>
+              <figure className="gif-item" key={index}>
                 <img
                   src={item.gifLink}
                   alt={`From ${item.userAddress.toString()}`}
                 />
-                <caption class="gif-caption">
-                  From ${item.userAddress.toString()}
-                </caption>
-              </div>
+                <figcaption className="gif-caption">
+                  From {item.userAddress.toString()}, votes ={" "}
+                  {item.voteCount.toString()}
+                </figcaption>
+              </figure>
             ))}
           </div>
         </div>
