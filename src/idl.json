@@ -51,11 +51,6 @@
                     "name": "baseAccount",
                     "isMut": true,
                     "isSigner": false
-                },
-                {
-                    "name": "user",
-                    "isMut": true,
-                    "isSigner": true
                 }
             ],
             "args": [
@@ -64,6 +59,22 @@
                     "type": "u64"
                 }
             ]
+        },
+        {
+            "name": "clearGifs",
+            "accounts": [
+                {
+                    "name": "baseAccount",
+                    "isMut": true,
+                    "isSigner": false
+                },
+                {
+                    "name": "user",
+                    "isMut": true,
+                    "isSigner": true
+                }
+            ],
+            "args": []
         }
     ],
     "accounts": [
@@ -111,6 +122,6 @@
         }
     ],
     "metadata": {
-        "address": "G6jFGfbYaAszY1bR382oiFa2ZCqhkTR8jTVWsd7m8S7V"
+        "address": "HCntEBgsHkBFQoLX8TUGjrY6dk7YDDa5ptSadb3c1doN"
     }
 }

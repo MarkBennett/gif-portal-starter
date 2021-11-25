@@ -1,4 +1,4 @@
-import { Program, Provider, web3 } from "@project-serum/anchor";
+import { Program, Provider, web3, BN } from "@project-serum/anchor";
 import { clusterApiUrl, Connection, PublicKey } from "@solana/web3.js";
 import { useCallback, useEffect, useState } from "react";
 import "./App.css";
@@ -168,6 +168,27 @@ const App = () => {
     }
   };
 
+  const onVoteUp = async (index) => {
+    try {
+      const provider = getProvider();
+      const program = getProgram(provider);
+      const index_arg = new BN(index);
+
+      await program.rpc.upvoteGif(index_arg, {
+        accounts: {
+          baseAccount: baseAccount.publicKey,
+          user: provider.wallet.publicKey,
+        },
+      });
+
+      console.log("Voted tallied!");
+
+      await getGifList();
+    } catch (error) {
+      console.log(`Error upvoting GIF (index=${index}):`, error);
+    }
+  };
+
   /*
    * We want to render this UI when the user hasn't connected
    * their wallet to our app yet.
@@ -222,8 +243,10 @@ const App = () => {
                   alt={`From ${item.userAddress.toString()}`}
                 />
                 <figcaption className="gif-caption">
-                  From {item.userAddress.toString()}, votes ={" "}
-                  {item.voteCount.toString()}
+                  From {item.userAddress.toString()}
+                  <br />
+                  votes = {item.voteCount.toString()} 💖{" "}
+                  <button onClick={() => onVoteUp(index)}>VOTE UP!</button>
                 </figcaption>
               </figure>
             ))}
