@@ -4,11 +4,12 @@ on:
   push:
     branches:
     - main
-
+  
 jobs:
   deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -25,7 +26,9 @@ jobs:
       # Runs a single command using the runners shell
       - name: Deploy with gh-pages
         run: |
+          echo "$APP_KEYPAIR" >> src/keypair.json
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
           npm run deploy -- -u "Mark Bennett (Deploybot) <mark@burmis.ca>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APP_KEYPAIR: ${{ secrets.APP_KEYPAIR }}
