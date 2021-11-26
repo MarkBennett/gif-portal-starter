@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/gif-portal-starter/static/css/main.8fe8b352.chunk.css",
+    "main.js": "/gif-portal-starter/static/js/main.80886268.chunk.js",
+    "main.js.map": "/gif-portal-starter/static/js/main.80886268.chunk.js.map",
+    "runtime-main.js": "/gif-portal-starter/static/js/runtime-main.32adc823.js",
+    "runtime-main.js.map": "/gif-portal-starter/static/js/runtime-main.32adc823.js.map",
+    "static/js/2.64f3c8af.chunk.js": "/gif-portal-starter/static/js/2.64f3c8af.chunk.js",
+    "static/js/2.64f3c8af.chunk.js.map": "/gif-portal-starter/static/js/2.64f3c8af.chunk.js.map",
+    "index.html": "/gif-portal-starter/index.html",
+    "static/css/main.8fe8b352.chunk.css.map": "/gif-portal-starter/static/css/main.8fe8b352.chunk.css.map",
+    "static/js/2.64f3c8af.chunk.js.LICENSE.txt": "/gif-portal-starter/static/js/2.64f3c8af.chunk.js.LICENSE.txt",
+    "static/media/twitter-logo.d89d9a86.svg": "/gif-portal-starter/static/media/twitter-logo.d89d9a86.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.32adc823.js",
+    "static/js/2.64f3c8af.chunk.js",
+    "static/css/main.8fe8b352.chunk.css",
+    "static/js/main.80886268.chunk.js"
+  ]
+}
